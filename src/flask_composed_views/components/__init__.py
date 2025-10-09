@@ -1,5 +1,3 @@
-# these components/tags are meant to be general
-
 from .base_component import BaseComponent
 from .base_tag import BaseTag
 

@@ -11,7 +11,6 @@ class BaseTag(BaseComponent):
         self.tag = tag
         self.other_attributes = other_attributes
         super().__init__(id=id, classes=classes, children=children)
-        #print(f'tag="{tag}" - children: {[c for c in children]}')
     
     def render(self):
         return build_tag(self.tag,

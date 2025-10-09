@@ -5,15 +5,11 @@ class BaseComponent:
                  children: list[object] | None = None):
         self.id = id
         self.classes = classes if(classes) else ""
-        #if(isinstance(children, str)):
-        #    print(f'children is a string: "{children}"')
-        #print(f'children before: "{children}"')
         if(not isinstance(children, list)):
             if(children is None):
                 children = []
             else:
                 children = [ children ]
-        #print(f'children after: "{children}"')
         self.children = children
 
     def _merge_render(self, *rendered_elements) -> str:

@@ -1,6 +1,5 @@
 from .base_tag import BaseTag
 
-
 class Link(BaseTag):
     def __init__(self,
                  children = None,
