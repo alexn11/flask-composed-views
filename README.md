@@ -31,4 +31,4 @@ This form is rendered using:
 csrf_token = ... # for example, using `flask_wtf.csrf.generate_csrf`
 WordInputForm(csrf_token=csrf_token).render()
 ```
-which could theoretically be used as the output of an `@app.route`-decorated function. Normally you would embed it within a page layout, etc. See the result [here](https://alexn11.eu.pythonanywhere.com/).
+which could theoretically be used as the output of an `@app.route`-decorated function. Normally you would embed it within a page layout, etc. **[The result](https://alexn11.eu.pythonanywhere.com/)**.
