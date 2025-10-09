@@ -1,0 +1,3 @@
+- dependencies
+- better readme
+- publish to pypi
