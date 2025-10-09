@@ -2,7 +2,7 @@ This module defines classes that can be rendered as "views" in a flask applicati
 
 The following example define a form to input some text as a component class (this additionally uses tailwindcss classes):
 ```python
-from flask_composed_views.components import BaseComponent, FormTextInput, Span, PlainText, FormSubmit
+from flask_composed_views.components import BaseComponent, Form, FormTextInput, Span, PlainText, FormSubmit
 
 class WordInputForm(BaseComponent):
     def __init__(self, id = None, classes = None, csrf_token: str | None = None):
