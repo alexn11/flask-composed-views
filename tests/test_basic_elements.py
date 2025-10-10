@@ -1,6 +1,5 @@
 from flask_composed_views.components import Header1, Link, Div, Span, Paragraph
 
-
 def test_header1():
     header = Header1(text='this is the text')
     assert(header.render() == '<h1>this is the text</h1>')
@@ -21,3 +20,4 @@ def test_no_text_arg():
     link = Link(text='the link', href='to.nowhere.com')
     span = Span(children=[link,], classes='my-span-class, another-class')
     assert(span.render() == '<span class="my-span-class, another-class"><a href="to.nowhere.com">the link</a></span>')
+
