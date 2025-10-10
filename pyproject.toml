@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "flask_composed_views"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
   { name="Alexandre De Zotti", email="alexn11.gh@gmail.com" },
 ]
