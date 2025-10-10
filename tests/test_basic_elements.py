@@ -16,3 +16,8 @@ def test_attributes():
     div_text = div.render()
     div_text = div_text.replace('\n', '')
     assert(div_text == f'<div id="test-id" class="test-class"><p>{par0_text}</p><p>{par1_text}</p></div>')
+
+def test_no_text_arg():
+    link = Link(text='the link', href='to.nowhere.com')
+    span = Span(children=[link,], classes='my-span-class, another-class')
+    assert(span.render() == '<span class="my-span-class, another-class"><a href="to.nowhere.com">the link</a></span>')
