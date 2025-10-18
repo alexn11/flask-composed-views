@@ -5,6 +5,7 @@ class Div(BaseTag):
                  text: str | None = None,
                  children: list | None = None,
                  id: str | None = None,
-                 classes: str | None = None):
-        super().__init__('div', id=id, classes=classes, children=prepend_text(text, children))
+                 classes: str | None = None,
+                 **kwargs):
+        super().__init__('div', id=id, classes=classes, children=prepend_text(text, children), other_attributes=kwargs)
     

@@ -1,5 +1,5 @@
 - dependencies
-- tests
+- tests: forms
 - better readme
 - publish pipeline
 - test pipeline

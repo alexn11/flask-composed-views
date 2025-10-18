@@ -6,7 +6,8 @@ class Header1(BaseTag):
                  text: str | None = None,
                  children: list | None = None,
                  id: str | None = None,
-                 classes: str | None = None):
+                 classes: str | None = None,
+                 **kwargs):
         children = prepend_text(text)
-        super().__init__('h1', id=id, classes=classes, children=children)
+        super().__init__('h1', id=id, classes=classes, children=children, other_attributes=kwargs)
     

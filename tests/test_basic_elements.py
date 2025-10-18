@@ -21,3 +21,7 @@ def test_no_text_arg():
     span = Span(children=[link,], classes='my-span-class, another-class')
     assert(span.render() == '<span class="my-span-class, another-class"><a href="to.nowhere.com">the link</a></span>')
 
+def test_other_attributes():
+    span = Span(text='span with thing', contenteditable="true")
+    span_text = span.render().replace('\n', '')
+    assert(span_text == '<span contenteditable="true">span with thing</span>')

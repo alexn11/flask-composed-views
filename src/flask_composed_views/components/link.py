@@ -7,8 +7,12 @@ class Link(BaseTag):
                  children = None,
                  id = None,
                  classes = None,
-                 href: str | None = None):
-        other_attributes = {}
+                 href: str | None = None,
+                 other_attributes: dict | None = None):
+        if(other_attributes is None):
+            other_attributes = {}
+        else:
+            other_attributes = other_attributes.copy()
         if(href):
             other_attributes['href'] = href
         super().__init__('a',

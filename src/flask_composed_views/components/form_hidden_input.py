@@ -9,5 +9,5 @@ class FormHiddenInput(BaseTag):
                          id=id,
                          classes=classes,
                          other_attributes=other_attributes,
-                         children=None)
+                         children=None,)
 
