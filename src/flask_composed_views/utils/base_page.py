@@ -4,6 +4,7 @@ class BasePage(BaseComponent):
                  title: str = "",
                  stylesheets: list[str] | None = None,
                  scripts: list[str] | None = None,
+                 scripts_defer: bool = True,
                  metas: list[dict] | None = None,
                  children=None):
         """Beware: stylesheets, scripts and metas are neither checked for injection, nor escaped.
@@ -12,6 +13,7 @@ class BasePage(BaseComponent):
         self.stylesheets = stylesheets
         self.scripts = scripts
         self.metas = metas
+        self.scripts_defer = scripts_defer
         if(children is None):
             children = []
         elif(not isinstance(children, list)):
@@ -36,7 +38,7 @@ class BasePage(BaseComponent):
                        ]) + '\n'
         if(self.scripts):
             header += '\n'.join([
-                            f'<script type="text/javascript" src="{script_url}"></script>\n'
+                            f'<script src="{script_url}" {"defer" if(self.scripts_defer) else ""}></script>\n'
                             for script_url in self.scripts
                         ]) + '\n'
         header += '</head>\n'
