@@ -1,33 +1,51 @@
-from ..components import BaseComponent, PlainText
-
+from ..components import BaseComponent, PlainText, BaseTag
 class BasePage(BaseComponent):
     def __init__(self,
                  title: str = "",
                  stylesheets: list[str] | None = None,
+                 scripts: list[str] | None = None,
+                 metas: list[dict] | None = None,
                  children=None):
-        """Don't use user input in the definition of stylesheets: not safe!!!
+        """Beware: stylesheets, scripts and metas are neither checked for injection, nor escaped.
         """
         self.title = PlainText(title)
         self.stylesheets = stylesheets
+        self.scripts = scripts
+        self.metas = metas
         if(children is None):
             children = []
         elif(not isinstance(children, list)):
             children = [ children, ]
         super().__init__(children=children)
 
+    def _build_meta(self, meta_dict: dict) -> str:
+        return ' '.join([ '<meta', ] + [ f'{name}="{value}"' for name, value in meta_dict.items() ] + [ '>', ])
+
     def _build_header(self) -> str:
         header = '<head>\n<meta charset="UTF-8">\n'
-        header += f'<title>{self.title.render()}</title>'
+        header += BaseTag('title', children=self.title).render() + '\n'
+        if(self.metas):
+            header += '\n'.join([
+                        self._build_meta(meta)
+                        for meta in self.metas
+                       ]) + '\n'
         if(self.stylesheets):
-            for stylesheet_url in self.stylesheets:
-                header += f'<link rel="stylesheet" href="{stylesheet_url}">' # TODO: make this safe?
-        header += '</head>'
+            header += '\n'.join([
+                        f'<link rel="stylesheet" href="{stylesheet_url}">'
+                        for stylesheet_url in self.stylesheets
+                       ]) + '\n'
+        if(self.scripts):
+            header += '\n'.join([
+                            f'<script type="text/javascript" src="{script_url}"></script>\n'
+                            for script_url in self.scripts
+                        ]) + '\n'
+        header += '</head>\n'
         return header
     
     def render(self) -> str:
         page_content = [
             f'<html>{self._build_header()}<body>', 
             super().render(),
-            '</body></html>',
+            '\n</body></html>',
         ]
         return "".join(page_content)
