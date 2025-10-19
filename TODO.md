@@ -1,7 +1,4 @@
 now:
-- LISTS!
-
-
 - dependencies
 - tests: forms
 - better readme
@@ -15,4 +12,5 @@ now:
 - base_page: safe scripts, stylesheets etc?
 
 # done
+- LISTS!
 - publish to pypi
