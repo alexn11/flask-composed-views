@@ -1,6 +1,7 @@
 from .base_tag import BaseTag
 from .plain_text import PlainText
 from ..core.plain_text_utils import prepend_text
+
 class Header1(BaseTag):
     def __init__(self,
                  text: str | None = None,
