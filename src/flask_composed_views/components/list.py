@@ -1,8 +1,12 @@
 from .base_tag import BaseTag
 from .base_component import BaseComponent
+from .plain_text import PlainText
+from ..core.plain_text_utils import prepend_child
 
 class ListItem(BaseTag):
-    def __init__(self, children = None, id = None, classes = None, other_attributes = None):
+    def __init__(self, text: str | None = None, children = None, id = None, classes = None, other_attributes = None):
+        if(text is not None):
+            children = prepend_child(PlainText(text), children)
         super().__init__('li', children, id, classes, other_attributes)
 
 class OrderedListTag(BaseTag):
