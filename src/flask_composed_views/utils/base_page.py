@@ -2,6 +2,7 @@ from ..components import BaseComponent, PlainText, BaseTag
 class BasePage(BaseComponent):
     def __init__(self,
                  title: str = "",
+                 favicon_url: str | None = None,
                  stylesheets: list[str] | None = None,
                  scripts: list[str] | None = None,
                  scripts_defer: bool = True,
@@ -10,6 +11,7 @@ class BasePage(BaseComponent):
         """Beware: stylesheets, scripts and metas are neither checked for injection, nor escaped.
         """
         self.title = PlainText(title)
+        self.favicon_url = favicon_url
         self.stylesheets = stylesheets
         self.scripts = scripts
         self.metas = metas
@@ -26,6 +28,8 @@ class BasePage(BaseComponent):
     def _build_header(self) -> str:
         header = '<head>\n<meta charset="UTF-8">\n'
         header += BaseTag('title', children=self.title).render() + '\n'
+        if(self.favicon_url):
+            header += f'<link rel="shortcut icon" href="{self.favicon_url}">\n'
         if(self.metas):
             header += '\n'.join([
                         self._build_meta(meta)
