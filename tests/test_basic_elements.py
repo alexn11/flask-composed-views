@@ -1,10 +1,5 @@
-from flask_composed_views.components import Header1, Link, Div, Span, Paragraph
-
-def test_header1():
-    header = Header1(text='this is the text')
-    assert(header.render() == '<h1>this is the text</h1>')
-    par = Paragraph(text='some par')
-    assert(par.render().replace('\n', '') == '<p>some par</p>')
+from flask_composed_views.components import Header1, Link, Div, Span, Paragraph, Button
+from flask_composed_views.components import Bold, Italic
 
 def test_attributes():
     par0_text = 'content 000'
@@ -15,6 +10,25 @@ def test_attributes():
     div_text = div.render()
     div_text = div_text.replace('\n', '')
     assert(div_text == f'<div id="test-id" class="test-class"><p>{par0_text}</p><p>{par1_text}</p></div>')
+
+def test_basic_tags():
+    x = Bold(text='Bold Text')
+    assert(x.render() == '<b>Bold Text</b>')
+    x = Italic(text = 'ITALIC text')
+    assert(x.render() == '<i>ITALIC text</i>')
+
+def test_button():
+    button = Button(text='label?',
+                    name='btn-name',)
+    assert(button.render().replace('\n', '') == '<button name="btn-name">label?</button>')
+    button = Button(button_type="button", id="btn-id", children=Span("btn span"))
+    assert(button.render().replace('\n', '') == '<button id="btn-id" type="button"><span>btn span</span></button>')
+
+def test_header1():
+    header = Header1(text='this is the text')
+    assert(header.render() == '<h1>this is the text</h1>')
+    par = Paragraph(text='some par')
+    assert(par.render().replace('\n', '') == '<p>some par</p>')
 
 def test_no_text_arg():
     link = Link(text='the link', href='to.nowhere.com')
