@@ -46,6 +46,7 @@ class BasePage(BaseComponent):
     
     def render(self) -> str:
         page_content = [
+            '<!doctype html>',
             f'<html>{self._build_header()}<body>', 
             super().render(),
             '\n</body></html>',
