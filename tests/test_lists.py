@@ -1,0 +1,1 @@
+from flask_composed_views.components import List
