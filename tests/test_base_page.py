@@ -18,3 +18,7 @@ def test_base_page_with_script():
     assert(isinstance(rendered_page, str))
     rendered_page = rendered_page.replace('\n', '')
     assert(rendered_page == '<html><head><meta charset="UTF-8"><title>test &lt;b&gt;title&lt;/b&gt;</title><script src="somewhere.js" defer></script></head><body><h1>some header</h1></body></html>')
+
+def test_favicon():
+    page = BasePage(favicon_url='data:image/png;base64,iVBORw0KGgo=')
+    assert('<link rel="icon shortcut" href="data:image/png;base64,iVBORw0KGgo=">' in page.render())
